@@ -1,10 +1,11 @@
 import { Editor, Node } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
+
 import type {
+  AnyReactCustomComponentDefinition,
   ComponentRegistry,
   InsertComponentPayload,
-} from "@tiptap-block-kit/core";
-import type { AnyReactCustomComponentDefinition } from "./types";
+} from "./types";
 import { ReactCustomComponentView } from "./ReactCustomComponentView";
 
 export interface CustomComponentOptions {

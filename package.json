@@ -1,20 +1,16 @@
 {
   "name": "tiptap-block-kit",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "type": "pnpm -r typecheck",
-    "vanilla": "pnpm --filter playground run dev",
-    "react": "pnpm --filter playground-react run dev",
-    "build_v": "pnpm --filter @tiptap-block-kit/vanilla run build",
-    "build_r": "pnpm --filter @tiptap-block-kit/react run build"
-  },
-  "keywords": [],
-  "author": "",
+  "private": true,
   "license": "MIT",
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm --filter @tiptap-block-kit/vanilla run build && pnpm --filter @tiptap-block-kit/react run build",
+    "build:vanilla": "pnpm --filter @tiptap-block-kit/vanilla run build",
+    "build:react": "pnpm --filter @tiptap-block-kit/react run build",
+    "dev:vanilla": "pnpm --filter playground run dev",
+    "dev:react": "pnpm --filter playground-react run dev"
+  },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -22,10 +18,12 @@
     "react-dom": "^19.2.4",
     "typescript": "^6.0.2"
   },
-  "overrides": {
-    "@tiptap/core": "2.27.2",
-    "@tiptap/pm": "2.27.2",
-    "@tiptap/react": "2.27.2",
-    "@tiptap/starter-kit": "2.27.2"
+  "pnpm": {
+    "overrides": {
+      "@tiptap/core": "2.27.2",
+      "@tiptap/pm": "2.27.2",
+      "@tiptap/react": "2.27.2",
+      "@tiptap/starter-kit": "2.27.2"
+    }
   }
 }

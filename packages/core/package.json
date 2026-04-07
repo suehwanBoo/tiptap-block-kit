@@ -6,5 +6,6 @@
   "types": "src/index.ts",
   "scripts": {
     "type": "tsc --noEmit"
-  }
+  },
+  "license": "MIT"
 }

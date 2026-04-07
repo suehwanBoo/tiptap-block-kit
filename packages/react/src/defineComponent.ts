@@ -1,6 +1,5 @@
 import { defineComponent as defineBaseComponent } from "@tiptap-block-kit/core";
-import type { AnyProps } from "@tiptap-block-kit/core";
-import { ReactCustomComponentDefinition } from "./types";
+import { AnyProps, ReactCustomComponentDefinition } from "./types";
 
 export function defineComponent<TProps = AnyProps>(definition: {
   name: string;

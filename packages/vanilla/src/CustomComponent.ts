@@ -1,10 +1,10 @@
+import { Node } from "@tiptap/core";
 import {
   AnyProps,
   ComponentRegistry,
   InsertComponentPayload,
-} from "@tiptap-block-kit/core";
-import { Node } from "@tiptap/core";
-import { VanillaCustomComponentDefinition } from "./types";
+  VanillaCustomComponentDefinition,
+} from "./types";
 
 export interface CustomComponentOptions {
   registry: ComponentRegistry<VanillaCustomComponentDefinition>;

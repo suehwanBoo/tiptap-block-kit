@@ -1,6 +1,9 @@
 import { NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
-import type { AnyProps, ComponentRegistry } from "@tiptap-block-kit/core";
-import type { AnyReactCustomComponentDefinition } from "./types";
+import type {
+  AnyProps,
+  AnyReactCustomComponentDefinition,
+  ComponentRegistry,
+} from "./types";
 
 type ReactCustomComponentExtensionOptions = {
   registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
