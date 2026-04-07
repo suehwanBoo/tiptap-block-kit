@@ -1,0 +1,56 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #111827;
+  background: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  padding: 24px;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+button {
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f9fafb;
+}
+
+#editor {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  min-height: 240px;
+  padding: 16px;
+}
+
+.ProseMirror {
+  min-height: 200px;
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0 0 12px;
+}
