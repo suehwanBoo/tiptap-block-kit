@@ -1,7 +1,7 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import {
   createRegistry,
-  CustomComponent,
+  CustomComponentKit,
   defineComponent,
 } from "@tiptap-block-kit/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -14,19 +14,16 @@ function CustomCard({
   title: string;
   description?: string;
 }) {
-  const [color, setColor] = useState("#ddd");
-  const colorChange = () =>
-    setColor((prev) => (prev === "#ddd" ? "red" : "#ddd"));
   return (
     <div
       style={{
-        border: `1px solid ${color}`,
+        border: `1px solid #ddd`,
         borderRadius: 12,
         padding: 16,
         margin: "8px 0",
         background: "#fafafa",
       }}
-      onClick={colorChange}
+      // data-drag-handle
     >
       <h3 style={{ margin: 0 }}>{title}</h3>
       {description && (
@@ -36,31 +33,60 @@ function CustomCard({
   );
 }
 
+function AFD() {
+  return <div>asdfasdf</div>;
+}
+
 const registry = createRegistry([
   defineComponent({
     name: "card",
     component: CustomCard,
   }),
+  defineComponent({
+    name: "adf",
+    component: AFD,
+  }),
 ]);
 
 export default function App() {
+  const [count, setCount] = useState(0);
   const editor = useEditor({
     extensions: [
       StarterKit,
-      CustomComponent.configure({
+      CustomComponentKit.configure({
         registry,
       }),
     ],
     content: `<p>Press the Button and insert the card in the Editor</p>`,
+    autofocus: "end",
   });
-
   const insertCard = () => {
     editor?.commands.insertComponent({
-      name: "card",
+      id: "" + count,
+      componentName: "card",
       props: {
-        title: "card",
+        title: "card" + count,
         description: "From @tiptap-block-kit/react",
       },
+      profile: "inlineDraggable",
+    });
+    setCount((prev) => prev + 1);
+  };
+
+  const insertAFD = () => {
+    editor?.commands.insertComponent({
+      id: "123",
+      componentName: "adf",
+      profile: "block",
+    });
+  };
+  const removeCard = () => {
+    editor?.commands.removeComponentById("1");
+  };
+  const updateCard = () => {
+    editor?.commands.updateComponentPropsById("1", {
+      title: "updatetetete",
+      description: "우아아아악",
     });
   };
   return (
@@ -78,6 +104,16 @@ export default function App() {
         Inser Card
       </button>
       <button
+        onClick={insertAFD}
+        style={{
+          padding: "8px 12px",
+          marginBottom: 16,
+          cursor: "pointer",
+        }}
+      >
+        Insert AFD
+      </button>
+      <button
         onClick={() => console.log(editor?.getJSON())}
         style={{
           padding: "8px 12px",
@@ -86,6 +122,26 @@ export default function App() {
         }}
       >
         Get JSON
+      </button>
+      <button
+        onClick={removeCard}
+        style={{
+          padding: "8px 12px",
+          marginBottom: 16,
+          cursor: "pointer",
+        }}
+      >
+        Remove
+      </button>
+      <button
+        onClick={updateCard}
+        style={{
+          padding: "8px 12px",
+          marginBottom: 16,
+          cursor: "pointer",
+        }}
+      >
+        Update
       </button>
       <div
         style={{

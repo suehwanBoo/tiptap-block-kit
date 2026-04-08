@@ -1,6 +1,6 @@
 import {
   createRegistry,
-  CustomComponent,
+  CustomComponentKit,
   defineComponent,
 } from "@tiptap-block-kit/vanilla";
 import "./style.css";
@@ -36,7 +36,6 @@ app.innerHTML = `
       <button id="insert-notice">Insert Notice</button>
       <button id="print-json">Print JSON</button>
     </div>
-
     <div id="editor"></div>
   </div>
 `;
@@ -55,22 +54,26 @@ const editor = new Editor({
   element: editorElement,
   extensions: [
     StarterKit,
-    CustomComponent.configure({
+    CustomComponentKit.configure({
       registry,
     }),
   ],
   content: `
     <p>Hello Tiptap</p>
   `,
+  autofocus: "end",
 });
 
 insertNoticeButton.addEventListener("click", () => {
   editor.commands.insertComponent({
-    name: "notice",
+    id: "123",
+    componentName: "notice",
     props: {
       text: "This is a custom notice block.",
     },
+    profile: "block",
   });
+  console.log(editor.getCustomComponents());
 });
 
 printJsonButton.addEventListener("click", () => {

@@ -19,14 +19,15 @@ export function ReactCustomComponentView({
   node,
   extension,
 }: ReactCustomComponentViewProps) {
-  const componentName = node.attrs.name as string;
+  const componentName = node.attrs.componentName as string;
   const props = (node.attrs.props ?? {}) as AnyProps;
 
   const component = extension.options.registry.get(componentName);
+  const as = extension.config.inline ? "span" : "div";
 
   if (!component) {
     return (
-      <NodeViewWrapper as="div" data-custom-component-root="true">
+      <NodeViewWrapper as={as} data-custom-component-root="true">
         Unknown component: {componentName}
       </NodeViewWrapper>
     );
@@ -35,7 +36,7 @@ export function ReactCustomComponentView({
   const Component = component.renderer;
 
   return (
-    <NodeViewWrapper as="div" data-custom-component-root="true">
+    <NodeViewWrapper as={as} data-custom-component-root="true">
       <Component {...props} />
     </NodeViewWrapper>
   );

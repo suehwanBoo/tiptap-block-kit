@@ -1,10 +1,10 @@
 import type { ComponentRegistry } from "./types";
 
-export function createRegistry<TDefinition extends { name: string }>(
+export function createRegistry<TDefinition extends { componentName: string }>(
   components: TDefinition[],
 ): ComponentRegistry<TDefinition> {
   const map = new Map(
-    components.map((component) => [component.name, component]),
+    components.map((component) => [component.componentName, component]),
   );
 
   return {

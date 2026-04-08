@@ -8,8 +8,8 @@
     "build": "pnpm --filter @tiptap-block-kit/vanilla run build && pnpm --filter @tiptap-block-kit/react run build",
     "build:vanilla": "pnpm --filter @tiptap-block-kit/vanilla run build",
     "build:react": "pnpm --filter @tiptap-block-kit/react run build",
-    "dev:vanilla": "pnpm --filter playground run dev",
-    "dev:react": "pnpm --filter playground-react run dev"
+    "dev:vanilla": "pnpm --filter vanilla run dev",
+    "dev:react": "pnpm --filter react run dev"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

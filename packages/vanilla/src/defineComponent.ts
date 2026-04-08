@@ -6,7 +6,7 @@ export function defineComponent(definition: {
   render: VanillaCustomComponentDefinition["renderer"];
 }) {
   return defineBaseComponent<VanillaCustomComponentDefinition>({
-    name: definition.name,
+    componentName: definition.name,
     renderer: definition.render,
   });
 }

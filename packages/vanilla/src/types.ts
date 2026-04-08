@@ -1,16 +1,25 @@
+import { profiles } from "./const";
+
 export type AnyProps = Record<string, unknown>;
 
+export type CustomComponentProfile = keyof typeof profiles;
+
 export type InsertComponentPayload = {
-  name: string;
+  id: string;
+  componentName: string;
   props?: AnyProps;
+  profile?: CustomComponentProfile;
+  ensureEditableSpace?: boolean;
 };
 
 export type CustomComponentDefinition<TRenderer = unknown> = {
-  name: string;
+  componentName: string;
   renderer: TRenderer;
 };
 
-export type ComponentRegistry<TDefinition extends { name: string }> = {
+export type AnyCustomComponentDefinition = CustomComponentDefinition<any>;
+
+export type ComponentRegistry<TDefinition extends { componentName: string }> = {
   get: (name: string) => TDefinition | undefined;
   getAll: () => TDefinition[];
 };
@@ -19,3 +28,27 @@ export type VanillaRenderer = (attrs: AnyProps) => HTMLElement;
 
 export type VanillaCustomComponentDefinition =
   CustomComponentDefinition<VanillaRenderer>;
+
+export type CustomComponentSchemaOptions = {
+  extensionName?: string;
+  inline?: boolean;
+  selectable?: boolean;
+  draggable?: boolean;
+};
+
+export type FoundCustomComponentNode = {
+  node: {
+    attrs: Record<string, unknown>;
+    nodeSize: number;
+  };
+  pos: number;
+};
+
+export type CustomComponentInstance = {
+  id: string;
+  componentName: string;
+  props: AnyProps;
+  pos: number;
+  nodeSize: number;
+  nodeTypeName: string;
+};

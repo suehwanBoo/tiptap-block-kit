@@ -6,7 +6,7 @@ export function defineComponent<TProps = AnyProps>(definition: {
   component: ReactCustomComponentDefinition<TProps>["renderer"];
 }) {
   return defineBaseComponent<ReactCustomComponentDefinition<TProps>>({
-    name: definition.name,
+    componentName: definition.name,
     renderer: definition.component,
   });
 }
