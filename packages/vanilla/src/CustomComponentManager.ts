@@ -157,9 +157,4 @@ export const CustomComponentManager =
           },
       };
     },
-    addStorage() {
-      return {
-        getAll: () => [],
-      };
-    },
   });
