@@ -1,11 +1,11 @@
 import { defineComponent as defineBaseComponent } from "@tiptap-block-kit/core";
-import type { VanillaCustomComponentDefinition } from "./types";
+import type { AnyProps, VanillaCustomComponentDefinition } from "./types";
 
-export function defineComponent(definition: {
+export function defineComponent<TProps = AnyProps>(definition: {
   name: string;
-  render: VanillaCustomComponentDefinition["renderer"];
+  render: VanillaCustomComponentDefinition<TProps>["renderer"];
 }) {
-  return defineBaseComponent<VanillaCustomComponentDefinition>({
+  return defineBaseComponent<VanillaCustomComponentDefinition<TProps>>({
     componentName: definition.name,
     renderer: definition.render,
   });

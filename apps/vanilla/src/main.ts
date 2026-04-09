@@ -1,12 +1,10 @@
-import {
-  createRegistry,
-  CustomComponentKit,
-  defineComponent,
-} from "@tiptap-block-kit/vanilla";
+import { CustomComponentKit } from "@tiptap-block-kit/vanilla";
 import "./style.css";
 
 import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
+import { unknownFallback } from "./components/Fallback";
+import { registry } from "./registry";
 
 const app = document.querySelector<HTMLDivElement>("#app");
 
@@ -14,68 +12,78 @@ if (!app) {
   throw new Error("App root not found");
 }
 
-const notice = defineComponent({
-  name: "notice",
-  render: (props) => {
-    const el = document.createElement("div");
-    el.style.padding = "12px";
-    el.style.border = "1px solid #d1d5db";
-    el.style.borderRadius = "8px";
-    el.style.background = "#f9fafb";
-    el.style.fontSize = "14px";
-    el.textContent = `Notice: ${props.text}`;
-    return el;
-  },
-});
-
-const registry = createRegistry([notice]);
-
 app.innerHTML = `
   <div class="app">
     <div class="toolbar">
-      <button id="insert-notice">Insert Notice</button>
-      <button id="print-json">Print JSON</button>
+      <button id="insert-youtube">Insert Youtube</button>
+      <button id="update-youtube">Update Youtube</button>
+      <button id="set-unknown-json">Set Unknown JSON</button>
+      <button id="log-json">Log JSON</button>
     </div>
     <div id="editor"></div>
   </div>
 `;
 
 const editorElement = document.querySelector<HTMLDivElement>("#editor");
-const insertNoticeButton =
-  document.querySelector<HTMLButtonElement>("#insert-notice");
-const printJsonButton =
-  document.querySelector<HTMLButtonElement>("#print-json");
 
-if (!editorElement || !insertNoticeButton || !printJsonButton) {
+if (!editorElement) {
   throw new Error("Required DOM elements not found");
 }
 
-const editor = new Editor({
-  element: editorElement,
+export const editor = new Editor({
+  element: document.querySelector("#editor")!,
   extensions: [
     StarterKit,
     CustomComponentKit.configure({
       registry,
+      fallback: unknownFallback,
     }),
   ],
-  content: `
-    <p>Hello Tiptap</p>
-  `,
-  autofocus: "end",
+  content: {
+    type: "doc",
+    content: [],
+  },
 });
 
-insertNoticeButton.addEventListener("click", () => {
-  editor.commands.insertComponent({
-    id: "123",
-    componentName: "notice",
-    props: {
-      text: "This is a custom notice block.",
-    },
-    profile: "block",
-  });
-  console.log(editor.getCustomComponents());
-});
+(document.querySelector("#insert-youtube") as HTMLButtonElement).onclick =
+  () => {
+    editor.commands.insertComponent({
+      id: "yt-1",
+      componentName: "youtube",
+      props: {
+        videoId: "abc123",
+        title: "first video",
+      },
+      profile: "block",
+    });
+  };
 
-printJsonButton.addEventListener("click", () => {
+(document.querySelector("#update-youtube") as HTMLButtonElement).onclick =
+  () => {
+    editor.commands.updateComponentPropsById("yt-1", {
+      title: "updated title",
+    });
+  };
+
+(document.querySelector("#set-unknown-json") as HTMLButtonElement).onclick =
+  () => {
+    editor.commands.setContent({
+      type: "doc",
+      content: [
+        {
+          type: "customComponent_block",
+          attrs: {
+            id: "unknown-1",
+            componentName: "not-registered",
+            props: {
+              foo: "bar",
+            },
+          },
+        },
+      ],
+    });
+  };
+
+(document.querySelector("#log-json") as HTMLButtonElement).onclick = () => {
   console.log(editor.getJSON());
-});
+};

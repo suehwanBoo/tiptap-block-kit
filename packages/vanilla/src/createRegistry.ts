@@ -5,9 +5,9 @@ import type {
 } from "./types";
 import { checkDuplicateDefinition } from "./utils";
 
-export function createRegistry(
-  components: VanillaCustomComponentDefinition[],
-): ComponentRegistry<VanillaCustomComponentDefinition> {
+export function createRegistry<T extends VanillaCustomComponentDefinition<any>>(
+  components: T[],
+): ComponentRegistry<T> {
   checkDuplicateDefinition(components);
-  return createBaseRegistry<VanillaCustomComponentDefinition>(components);
+  return createBaseRegistry<T>(components);
 }

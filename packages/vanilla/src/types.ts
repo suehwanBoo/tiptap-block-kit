@@ -24,10 +24,10 @@ export type ComponentRegistry<TDefinition extends { componentName: string }> = {
   getAll: () => TDefinition[];
 };
 
-export type VanillaRenderer = (attrs: AnyProps) => HTMLElement;
+export type VanillaRenderer<TProps = AnyProps> = (props: TProps) => HTMLElement;
 
-export type VanillaCustomComponentDefinition =
-  CustomComponentDefinition<VanillaRenderer>;
+export type VanillaCustomComponentDefinition<TProps = AnyProps> =
+  CustomComponentDefinition<VanillaRenderer<TProps>>;
 
 export type CustomComponentSchemaOptions = {
   extensionName?: string;

@@ -1,4 +1,4 @@
-import { Component, ComponentType } from "react";
+import { ComponentType } from "react";
 import { profiles } from "./const";
 
 export type AnyProps = Record<string, unknown>;

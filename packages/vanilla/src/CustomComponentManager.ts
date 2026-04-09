@@ -82,9 +82,7 @@ export const CustomComponentManager =
           ({ chain }) => {
             const definition = this.options.registry.get(payload.componentName);
             if (!definition) return false;
-
             const resolvedProfile = payload.profile ?? "block";
-
             const nodeType = this.options.profileNodeNames[resolvedProfile];
             if (!nodeType) return false;
 
