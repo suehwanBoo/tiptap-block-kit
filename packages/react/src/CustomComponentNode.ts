@@ -1,13 +1,16 @@
 import { Node } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import { ReactCustomComponentView } from "./ReactCustomComponentView";
+import { ReactCustomComponentView } from "./components/ReactCustomComponentView";
 import type {
   AnyReactCustomComponentDefinition,
   ComponentRegistry,
+  UnknownComponentFallbackProps,
 } from "./types";
+import { ComponentType } from "react";
 
 export interface CustomComponentNodeOptions {
   registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
+  fallback?: ComponentType<UnknownComponentFallbackProps>;
 }
 
 export function createCustomComponentNode(config: {
@@ -33,6 +36,7 @@ export function createCustomComponentNode(config: {
           get: () => undefined,
           getAll: () => [],
         },
+        fallback: undefined,
       };
     },
 

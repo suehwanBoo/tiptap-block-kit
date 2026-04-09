@@ -3,10 +3,14 @@ import type {
   AnyProps,
   AnyReactCustomComponentDefinition,
   ComponentRegistry,
-} from "./types";
+  UnknownComponentFallbackProps,
+} from "../types";
+import DefaultFallback from "./Fallback";
+import { ComponentType } from "react";
 
 type ReactCustomComponentExtensionOptions = {
   registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
+  fallback?: ComponentType<UnknownComponentFallbackProps>;
 };
 
 type ReactCustomComponentViewProps = NodeViewProps & {
@@ -24,11 +28,17 @@ export function ReactCustomComponentView({
 
   const component = extension.options.registry.get(componentName);
   const as = extension.config.inline ? "span" : "div";
+  const Fallback = extension.options
+    .fallback as ComponentType<UnknownComponentFallbackProps>;
 
   if (!component) {
     return (
       <NodeViewWrapper as={as} data-custom-component-root="true">
-        Unknown component: {componentName}
+        {Fallback ? (
+          <Fallback componentName={componentName} props={props} />
+        ) : (
+          <DefaultFallback componentName={componentName} props={props} />
+        )}
       </NodeViewWrapper>
     );
   }

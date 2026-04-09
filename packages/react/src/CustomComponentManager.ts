@@ -7,8 +7,10 @@ import type {
   CustomComponentProfile,
   FoundCustomComponentNode,
   InsertComponentPayload,
+  UnknownComponentFallbackProps,
 } from "./types";
 import { getCustomComponentInstances } from "./utils";
+import { ComponentType } from "react";
 
 export interface CustomComponentManagerOptions {
   registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
@@ -52,7 +54,6 @@ const findCustomComponentNodeById = (
 export const CustomComponentManager =
   Extension.create<CustomComponentManagerOptions>({
     name: "customComponentManager",
-
     onCreate() {
       this.editor.getCustomComponents = () => {
         const nodeNames = Object.values(this.options.profileNodeNames);

@@ -37,6 +37,10 @@ function AFD() {
   return <div>asdfasdf</div>;
 }
 
+function Fallback() {
+  return <div>Custom Fallback</div>;
+}
+
 const registry = createRegistry([
   defineComponent({
     name: "card",
@@ -55,6 +59,7 @@ export default function App() {
       StarterKit,
       CustomComponentKit.configure({
         registry,
+        fallback: Fallback,
       }),
     ],
     content: `<p>Press the Button and insert the card in the Editor</p>`,
@@ -89,6 +94,24 @@ export default function App() {
       description: "우아아아악",
     });
   };
+
+  const checkFallback = () => {
+    editor?.commands.setContent({
+      type: "doc",
+      content: [
+        {
+          type: "customComponent_block", // ✅ 존재하는 node type
+          attrs: {
+            id: "1",
+            componentName: "not-exists", // ❌ registry에 없음
+            props: {
+              videoId: "abc123",
+            },
+          },
+        },
+      ],
+    });
+  };
   return (
     <div style={{ padding: 20 }}>
       <h2>tiptap-block-kit/react playground</h2>
@@ -114,7 +137,7 @@ export default function App() {
         Insert AFD
       </button>
       <button
-        onClick={() => console.log(editor?.getJSON())}
+        onClick={checkFallback}
         style={{
           padding: "8px 12px",
           marginBottom: 16,

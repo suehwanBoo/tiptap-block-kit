@@ -2,17 +2,10 @@ import { Extension } from "@tiptap/core";
 import { createCustomComponentNode } from "./CustomComponentNode";
 import { CustomComponentManager } from "./CustomComponentManager";
 import type {
-  AnyReactCustomComponentDefinition,
-  ComponentRegistry,
+  CustomComponentKitOptions,
   CustomComponentProfile,
 } from "./types";
 import { profiles } from "./const";
-
-export interface CustomComponentKitOptions {
-  registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
-  profiles: Partial<typeof profiles>;
-  baseExtensionName: string;
-}
 
 export const CustomComponentKit = Extension.create<CustomComponentKitOptions>({
   name: "customComponentKit",
@@ -25,6 +18,7 @@ export const CustomComponentKit = Extension.create<CustomComponentKitOptions>({
       },
       baseExtensionName: "customComponent",
       profiles,
+      fallback: undefined,
     };
   },
 
@@ -47,6 +41,7 @@ export const CustomComponentKit = Extension.create<CustomComponentKitOptions>({
         draggable: spec.draggable,
       }).configure({
         registry: this.options.registry,
+        fallback: this.options.fallback,
       }),
     );
 

@@ -3,10 +3,12 @@ import {
   AnyCustomComponentDefinition,
   AnyProps,
   ComponentRegistry,
+  UnknownComponentFallbackProps,
 } from "./types";
 
 export interface CustomComponentNodeOptions {
   registry: ComponentRegistry<AnyCustomComponentDefinition>;
+  fallback?: (payload: UnknownComponentFallbackProps) => HTMLElement;
 }
 
 export function createCustomComponentNode(config: {
@@ -32,6 +34,7 @@ export function createCustomComponentNode(config: {
           get: () => undefined,
           getAll: () => [],
         },
+        fallback: undefined,
       };
     },
 
@@ -65,7 +68,10 @@ export function createCustomComponentNode(config: {
         const props = (node.attrs.props ?? {}) as AnyProps;
         const component = this.options.registry.get(componentName);
         if (!component) {
-          $elem.textContent = `Unknown component: ${componentName}`;
+          if (this.options.fallback) {
+            const $fallback = this.options.fallback({ componentName, props });
+            $elem.replaceChildren($fallback);
+          } else $elem.textContent = `Unknown component: ${componentName}`;
           return { dom: $elem };
         }
         const rendered = component.renderer(props);

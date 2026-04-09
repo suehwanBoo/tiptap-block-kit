@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { Component, ComponentType } from "react";
 import { profiles } from "./const";
 
 export type AnyProps = Record<string, unknown>;
@@ -54,3 +54,15 @@ export type CustomComponentInstance = {
   nodeSize: number;
   nodeTypeName: string;
 };
+
+export type UnknownComponentFallbackProps = {
+  componentName: string;
+  props: AnyProps;
+};
+
+export interface CustomComponentKitOptions {
+  registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
+  profiles: Partial<typeof profiles>;
+  baseExtensionName: string;
+  fallback?: ComponentType<UnknownComponentFallbackProps>;
+}

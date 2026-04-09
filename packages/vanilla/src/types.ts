@@ -44,6 +44,18 @@ export type FoundCustomComponentNode = {
   pos: number;
 };
 
+export type UnknownComponentFallbackProps = {
+  componentName: string;
+  props: AnyProps;
+};
+
+export interface CustomComponentKitOptions {
+  registry: ComponentRegistry<AnyCustomComponentDefinition>;
+  profiles: Partial<typeof profiles>;
+  baseExtensionName: string;
+  fallback?: (payload: UnknownComponentFallbackProps) => HTMLElement;
+}
+
 export type CustomComponentInstance = {
   id: string;
   componentName: string;
