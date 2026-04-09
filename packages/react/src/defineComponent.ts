@@ -10,8 +10,8 @@ export function defineComponent<TProps = AnyProps>(definition: {
   });
 }
 
-export function defineBaseComponent<
-  TDefinition extends { componentName: string },
->(definition: TDefinition) {
+function defineBaseComponent<TDefinition extends { componentName: string }>(
+  definition: TDefinition,
+) {
   return definition;
 }
