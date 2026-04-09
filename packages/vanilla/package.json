@@ -1,6 +1,26 @@
 {
   "name": "@tiptap-block-kit/vanilla",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "Custom component extension kit for Tiptap (Vanilla JS)",
+  "keywords": [
+    "tiptap",
+    "editor",
+    "rich-text",
+    "vanilla",
+    "javascript",
+    "extension",
+    "custom-component"
+  ],
+  "author": "suehwanBoo",
+  "license": "MIT",
+  "homepage": "https://github.com/suehwanBoo/tiptap-block-kit#readme",
+  "bugs": {
+    "url": "https://github.com/suehwanBoo/tiptap-block-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suehwanBoo/tiptap-block-kit"
+  },
   "type": "module",
   "files": [
     "dist"
@@ -28,10 +48,5 @@
   "devDependencies": {
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/suehwanBoo/tiptap-block-kit"
   }
 }
