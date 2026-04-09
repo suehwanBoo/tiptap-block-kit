@@ -1,4 +1,3 @@
-import { createBaseRegistry } from "./base";
 import type {
   AnyReactCustomComponentDefinition,
   ComponentRegistry,
@@ -10,4 +9,21 @@ export function createRegistry(
 ): ComponentRegistry<AnyReactCustomComponentDefinition> {
   checkDuplicateDefinition(components);
   return createBaseRegistry<AnyReactCustomComponentDefinition>(components);
+}
+
+function createBaseRegistry<TDefinition extends { componentName: string }>(
+  components: TDefinition[],
+): ComponentRegistry<TDefinition> {
+  const map = new Map(
+    components.map((component) => [component.componentName, component]),
+  );
+
+  return {
+    get(name: string) {
+      return map.get(name);
+    },
+    getAll() {
+      return Array.from(map.values());
+    },
+  };
 }

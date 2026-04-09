@@ -1,4 +1,3 @@
-import { defineBaseComponent } from "./base";
 import type { AnyProps, VanillaCustomComponentDefinition } from "./types";
 
 export function defineComponent<TProps = AnyProps>(definition: {
@@ -9,4 +8,10 @@ export function defineComponent<TProps = AnyProps>(definition: {
     componentName: definition.name,
     renderer: definition.render,
   });
+}
+
+function defineBaseComponent<TDefinition extends { componentName: string }>(
+  definition: TDefinition,
+) {
+  return definition;
 }
