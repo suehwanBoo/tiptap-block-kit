@@ -62,7 +62,6 @@ export type UnknownComponentFallbackProps = {
 
 export interface CustomComponentKitOptions {
   registry: ComponentRegistry<AnyReactCustomComponentDefinition>;
-  profiles: Partial<typeof profiles>;
   baseExtensionName: string;
   fallback?: ComponentType<UnknownComponentFallbackProps>;
 }
