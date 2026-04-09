@@ -43,7 +43,7 @@ const registry = createRegistry([
     component: CustomCard,
   }),
   defineComponent({
-    name: "adf",
+    name: "afd",
     component: AFD,
   }),
 ]);

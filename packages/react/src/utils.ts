@@ -1,5 +1,9 @@
 import { Editor } from "@tiptap/core";
-import { AnyProps, CustomComponentInstance } from "./types";
+import {
+  AnyProps,
+  AnyReactCustomComponentDefinition,
+  CustomComponentInstance,
+} from "./types";
 
 export function getCustomComponentInstances(args: {
   editor: Editor;
@@ -24,4 +28,17 @@ export function getCustomComponentInstances(args: {
   });
 
   return results;
+}
+
+export function checkDuplicateDefinition(
+  components: AnyReactCustomComponentDefinition[],
+) {
+  const checkDuplicate = new Map<string, boolean>();
+  for (const { componentName } of components) {
+    if (checkDuplicate.has(componentName))
+      throw new Error(
+        `[tiptap-block-kit] Duplicate componentName "${componentName}" detected. componentName must be unique.`,
+      );
+    checkDuplicate.set(componentName, true);
+  }
 }
