@@ -111,10 +111,11 @@ defineComponent({
 
 ---
 
+
 ## 📚 Documentation
 
-- React guide → ./packages/react/README.md
-- Vanilla guide → ./packages/vanilla/README.md
+- ⚛️ React → [@tiptap-block-kit/react](./packages/react/README.md)
+- 🧱 Vanilla → [@tiptap-block-kit/vanilla](./packages/vanilla/README.md)
 
 ---
 
