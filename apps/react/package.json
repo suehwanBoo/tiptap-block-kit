@@ -12,9 +12,9 @@
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "@tiptap/core": "^2.27.2",
-    "@tiptap/react": "^2.27.2",
-    "@tiptap/starter-kit": "^2.27.2",
+    "@tiptap/core": "^3.0.0",
+    "@tiptap/react": "^3.0.0",
+    "@tiptap/starter-kit": "^3.0.0",
     "@tiptap-block-kit/react": "workspace:*"
   },
   "devDependencies": {

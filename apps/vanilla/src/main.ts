@@ -41,7 +41,6 @@ export const editor = new Editor({
   ],
   content: {
     type: "doc",
-    content: [],
   },
 });
 
