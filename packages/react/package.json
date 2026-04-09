@@ -22,9 +22,6 @@
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
-  "dependencies": {
-    "@tiptap-block-kit/core": "workspace:*"
-  },
   "peerDependencies": {
     "@tiptap/core": "^2 || ^3",
     "@tiptap/react": "^2 || ^3",

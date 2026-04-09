@@ -1,4 +1,4 @@
-import { createRegistry as createBaseRegistry } from "@tiptap-block-kit/core";
+import { createBaseRegistry } from "./base";
 import type {
   ComponentRegistry,
   VanillaCustomComponentDefinition,

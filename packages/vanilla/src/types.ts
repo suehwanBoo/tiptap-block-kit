@@ -51,7 +51,6 @@ export type UnknownComponentFallbackProps = {
 
 export interface CustomComponentKitOptions {
   registry: ComponentRegistry<AnyCustomComponentDefinition>;
-  profiles: Partial<typeof profiles>;
   baseExtensionName: string;
   fallback?: (payload: UnknownComponentFallbackProps) => HTMLElement;
 }

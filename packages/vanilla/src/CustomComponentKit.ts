@@ -14,12 +14,11 @@ export const CustomComponentKit = Extension.create<CustomComponentKitOptions>({
         getAll: () => [],
       },
       baseExtensionName: "customComponent",
-      profiles,
     };
   },
 
   addExtensions() {
-    const profileEntries = Object.entries(this.options.profiles) as Array<
+    const profileEntries = Object.entries(profiles) as Array<
       [CustomComponentProfile, (typeof profiles)[CustomComponentProfile]]
     >;
 

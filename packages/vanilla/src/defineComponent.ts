@@ -1,4 +1,4 @@
-import { defineComponent as defineBaseComponent } from "@tiptap-block-kit/core";
+import { defineBaseComponent } from "./base";
 import type { AnyProps, VanillaCustomComponentDefinition } from "./types";
 
 export function defineComponent<TProps = AnyProps>(definition: {
