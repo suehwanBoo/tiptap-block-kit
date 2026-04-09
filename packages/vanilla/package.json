@@ -29,5 +29,9 @@
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suehwanBoo/tiptap-block-kit"
+  }
 }
